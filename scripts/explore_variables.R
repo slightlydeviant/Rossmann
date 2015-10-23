@@ -10,7 +10,7 @@ test <- read.csv("data/test.csv")
 
 
 # Store Data -----
-
+summary(store$StoreType) # a,b,c,d: 602, 17, 148, 348 
 
 # Training Data -----
 train$Date <- as.Date(train$Date, "%Y-%m-%d")
