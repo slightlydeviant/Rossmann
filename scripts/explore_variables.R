@@ -32,7 +32,13 @@ store2 <- store %>%
                                               Promo2SinceYear, sep = "-"),
                                        format = "%w-%W-%Y"),
          Promo2 = factor(Promo2),
-         PromoInterval = ifelse(PromoInterval == "", NA, as.character(PromoInterval))) %>%
+         PromoInterval = ifelse(PromoInterval == "", NA, as.character(PromoInterval)),
+         CompetitionDistance = ifelse(is.na(CompetitionDistance), 
+                                      mean(store$CompetitionDistance, na.rm = TRUE), 
+                                      CompetitionDistance),
+         CompetitionOpenSinceDate = ifelse(is.na(CompetitionOpenSinceDate),
+                                                 as.Date("1900-01-01"),
+                                                 CompetitionOpenSinceDate)) %>%
   separate(col = PromoInterval, into = c("m1", "m2", "m3", "m4"), sep = ",") %>%
   select(-CompetitionOpenSinceMonth,
          -CompetitionOpenSinceYear,
@@ -95,4 +101,4 @@ combo <- store2 %>%
          ) %>%
   select(-(m1:m4), -month)
 
-write.csv(combo, file = "data/combo.csv")
+saveRDS(combo, file = "data/combo.rds")
