@@ -67,7 +67,7 @@ train2 <- train %>%
          DayOfWeek2 = factor(train$DayOfWeek, levels = 1:7, 
                              labels = c("Monday", "Tuesday", "Wednesday", 
                                         "Thursday", "Friday", "Saturday", "Sunday")),
-         Open = factor(Open),
+         # Open = factor(Open),
          Promo = factor(Promo),
          SchoolHoliday = factor(SchoolHoliday)) %>%
   select(-DayOfWeek)
